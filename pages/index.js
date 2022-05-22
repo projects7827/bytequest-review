@@ -8,40 +8,32 @@ export default function Home() {
   useEffect(() => {
     getData(state.page);
   }, [])
-
-
-
+  ///-----Fetching Data From Api-----///
   const getData = (page) => {
     updateState({ ...state, "loader": true })
-
-
-
-
     axios({
       "method": "get",
       "url": `https://api.tjori.com/api/v7filters/na/women-all-products/?f_page=${page}&format=json`,
       "responseType": 'application/json',
     }).then((res) => {
-      console.log(res);
       updateState({ ...state, "data": res.data.data.products, "total_pages": res.data.data.total_pages, "loader": false, "page": page })
     })
   }
+  ///-----End-----///
 
+  ///-----Page Change-----///
   function prevPage() {
-    getData(state.page === 1 ? 1 : state.page - 1)
+    if (state.page !== 1) {
+      getData(state.page - 1)
+    }
   }
-
   function nextPage() {
-    getData(state.page === state.total_pages ? total_pages : state.page + 1)
+    if (state.page !== state.total_pages) {
+      getData(state.page + 1)
+    }
   }
-  useEffect(() => {
-    updateState({ ...state, "result": state["data"] })
-  }, [state["data"]])
+  ///-----End-----///
 
-  function myLoader() {
-    return (<>
-      loading.....</>);
-  }
   function nameProcessing(name) {
     let arr = [];
     if (name.length > 40) {
@@ -165,7 +157,7 @@ export default function Home() {
           <>
 
             <div className='shopping_content__container'>
-              {state.result.map((value, index) => {
+              {state.data.map((value, index) => {
                 let name = nameProcessing(value.name);
                 let price = value.price;
                 return (<>
@@ -197,8 +189,6 @@ export default function Home() {
             </div>
           </>
         }
-
-
       </div>
     </div>
   </>)
