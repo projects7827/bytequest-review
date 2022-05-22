@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Home() {
-  const [state, updateState] = useState({ "data": [], "result": [], "loader": true, "page":1 , total_pages: "" });
+  const [state, updateState] = useState({ "data": [], "result": [], "loader": true, "page": 1, total_pages: "" });
   useEffect(() => {
     getData(state.page);
   }, [])
@@ -48,6 +48,24 @@ export default function Home() {
     }
     return name;
   }
+  ///-----Discount Calculation-----///
+  function discountCalculation(price, discount) {
+    if (discount === 0) {
+      return (<>
+        <div className='shopping_content__price'> ₹{price}</div>
+      </>)
+    }
+    else {
+      let discountedPrice = (discount / 100) * price;
+      discountedPrice = Math.floor(discountedPrice)
+      return (<>
+        <div className='shopping_content__price'> ₹{discountedPrice}</div>
+        <div className='shopping_content__old_price'> ₹{price}</div>
+        <div className='shopping_content__discount'>{`(${discount}% off)`}</div>
+      </>)
+    }
+  }
+  ///-----End-----///
   return (<>
     <div className='shopping_header'>
       <div className='shopping_header__one'>
@@ -164,6 +182,9 @@ export default function Home() {
               {state.data.map((value, index) => {
                 let name = nameProcessing(value.name);
                 let price = value.price;
+                let discount = value.discount;
+                console.log(discount);
+
                 return (<>
                   <div className='shopping_content__card'>
                     <div className='shopping_content__img'>
@@ -177,11 +198,8 @@ export default function Home() {
                       {name}
                     </div>
                     <div className='shopping_content__price_container'>
-                      <div className='shopping_content__price'> ₹{price}</div>
-                      <div className='shopping_content__old_price'> ₹{price}</div>
-                      <div className='shopping_content__discount'>(50% off)</div>
+                      {discountCalculation(price, discount)}
                     </div>
-
                     <div className='shopping_content__add_cart'>
                       <div className='shopping_content__plus'>
                         <Image src="/img/plus.png" height={15} width={15} />
