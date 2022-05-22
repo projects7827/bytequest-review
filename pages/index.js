@@ -160,6 +160,7 @@ export default function Home() {
           <>
 
             <div className='shopping_content__container'>
+              {/*-----Cards Displaying-----*/}
               {state.data.map((value, index) => {
                 let name = nameProcessing(value.name);
                 let price = value.price;
@@ -189,6 +190,7 @@ export default function Home() {
                     </div>
                   </div></>)
               })}
+              {/*-----End-----*/}
             </div>
           </>
         }
