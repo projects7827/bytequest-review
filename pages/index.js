@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Home() {
-  const [state, updateState] = useState({ "data": [], "result": [], "loader": true, "page": 1, total_pages: "" });
+  const [state, updateState] = useState({ "data": [], "result": [], "loader": true, "page":1 , total_pages: "" });
   useEffect(() => {
     getData(state.page);
   }, [])
@@ -16,7 +16,8 @@ export default function Home() {
       "url": `https://api.tjori.com/api/v7filters/na/women-all-products/?f_page=${page}&format=json`,
       "responseType": 'application/json',
     }).then((res) => {
-      updateState({ ...state, "data": res.data.data.products, "total_pages": res.data.data.total_pages, "loader": false, "page": page })
+      console.log(res.data.data);
+      updateState({ ...state, "data": res.data.data.products, "total_pages": res.data.data.pagination.total_pages, "loader": false, "page": page })
     })
   }
   ///-----End-----///
@@ -28,6 +29,8 @@ export default function Home() {
     }
   }
   function nextPage() {
+    console.log(state.total_pages);
+    console.log(state.page !== state.total_pages);
     if (state.page !== state.total_pages) {
       getData(state.page + 1)
     }
