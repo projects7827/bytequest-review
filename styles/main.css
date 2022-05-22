@@ -6,17 +6,27 @@ body {
 .shopping_header {
     padding-right: 20px;
     padding-left: 30px;
-    padding-top: 15px;
+    position: fixed;
+    padding-top: 25px;
+    z-index: 100;
+    background: black;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    padding-bottom: 10px;
 }
 
 .shopping_header__left {
     color: white;
     font-size: 20px;
+    cursor: pointer;
+    float: left;
 }
+
 
 .shopping_header__right {
     float: right;
-    margin-top: -21px;
+    margin-top: 6px;
 }
 
 .shopping_header__right img {
@@ -28,12 +38,13 @@ body {
 .shopping_header__categories {
     height: 40px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 50px;
     color: white;
     display: flex;
     place-items: center;
     justify-content: center;
 }
+
 .shopping_header__categories div {
     margin-left: 10px;
     margin-right: 10px;
@@ -42,12 +53,176 @@ body {
     border-radius: 3px;
     padding: 5px 20px;
 }
+
+.shopping_content__sub_categories img {
+    cursor: pointer;
+    position: relative;
+}
+
+
 .shopping_header__categories div:hover {
     background: white;
     color: black
 }
-.shopping_header__sub_categories {
-    border: 1px solid white;
-    overflow: auto;
-    margin-top: 50px;
+
+
+
+.shopping_content__heading {
+    color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 19px;
+    text-align: left;
+}
+
+.shopping_content {
+    margin: auto;
+    width: 1300px;
+    padding-top: 100px;
+}
+
+
+.shopping_content__sub_categories::-webkit-scrollbar {
+    width: 10px;
+}
+
+.shopping_content__sub_categories {
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+    place-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 160px 160px 160px 160px 160px 160px 160px 160px;
+    margin-top: 60px;
+    grid-column-gap: 10px;
+}
+
+.shopping_content__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 70px;
+    grid-column-gap: 25px;
+    text-align: center;
+    position: relative;
+
+
+
+}
+
+.shopping_content__card {
+    color: white;
+}
+
+.shopping_content__img {
+    position: relative;
+}
+
+.shopping_content__bookmark {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    cursor: pointer;
+}
+
+.shopping_content__info {
+    font-size: 20px;
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 60px;
+    padding-top: 10px;
+    line-height: 1.2;
+}
+
+.shopping_content__price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.shopping_content__price_container {
+    margin-top: -6px;
+    display: flex;
+    padding-left: 10px;
+}
+
+.shopping_content__old_price {
+    text-decoration: line-through;
+    font-size: 14px;
+    font-weight: normal;
+    padding-top: 8px;
+}
+
+.shopping_content__price_container div {
+    padding-right: 7px;
+    margin-top: 15px;
+}
+
+.shopping_content__discount {
+    color: green;
+    font-weight: normal;
+    font-size: 15px;
+    padding-top: 7px;
+}
+
+.shopping_content__img img {
+    border-radius: 5px;
+}
+
+.shopping_content__add_cart {
+    float: right;
+    margin-top: -36px;
+    padding-right: 15px;
+    position: relative;
+}
+
+
+.shopping_content__loader {
+
+    font-weight: bold;
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    left: 0px;
+    text-align: center;
+    right: 0px;
+    top: 150px;
+}
+
+.shopping_content__prev_next {
+    float: right;
+    width: 180px;
+    height: 30px;
+    margin-top: -62px;
+    margin-right: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 11px;
+}
+
+
+
+.shopping_content__prev_next div {
+    display: flex;
+    place-items: center;
+    border-radius: 3px;
+    justify-content: center;
+    padding-bottom: 1px;
+    background: white;
+}
+
+.shopping_content__plus {
+   
+    position: absolute;
+    bottom: -7px;
+    right: 7px;
+
+}
+
+.shopping_content__plus img {
+    background: black;
+    border-radius:50%;
+    padding: 5px !important;
+    text-align: center !important;
 }
